@@ -1,0 +1,16 @@
+Exercício 7:Verificando Extensões Instaladas
+Anote quais extensões existem instaladas atualmente na sua IDE.
+R: c/c ++
+c/c++ compile run
+c/c++ extension pack
+c/c++ themes
+cmake
+cmake tools
+
+xercício 8: Instalando Extensões
+Instale duas extensões de sua preferência. Explique para que servem as extensões
+instaladas e o que mudou na sua IDE após a instalação.
+R: Gitlens-> é possível ter uma visão muito mais 
+detalhada do código guardado nestes repositórios. 
+
+Github Pull Requests and Issues -> é possível personalizar e padronizar as informações.

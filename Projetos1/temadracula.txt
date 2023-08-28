@@ -1,0 +1,7 @@
+Exercício 9: Customizando a IDE - Temas
+Instale o Tema Drácula na sua IDE. Escolha qual o melhor tema de sua preferência.
+Descreva como você fez para configurar o tema da sua IDE.
+
+R: passo a passo -> ctrl + shift + p
+selecionar preferences: color theme
+depois só selecionar o tema.
