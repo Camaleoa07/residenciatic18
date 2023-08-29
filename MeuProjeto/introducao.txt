@@ -1,2 +1,3 @@
 É uma barra de navegação destinada a auxiliar os visitantes no acesso as informações.
 qualquer coisa
+criação da tag 1.0 do projeto
