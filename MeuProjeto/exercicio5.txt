@@ -1,2 +1,1 @@
 Já realizei a conexão com o comando git remote add origin 'link'
-qualquer coisa 
