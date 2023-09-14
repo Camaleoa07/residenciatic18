@@ -60,7 +60,7 @@ int main()
         cout << "5. Sair" << endl;
         cout << "Escolha uma opção: ";
         cin >> opcao;
-        cin.ignore(); // Limpa o caractere de nova linha deixado pelo cin
+        cin.ignore(); 
 
         switch (opcao)
         {
