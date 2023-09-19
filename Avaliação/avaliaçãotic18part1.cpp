@@ -1,161 +1,181 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <iomanip>
 
 using namespace std;
 
-class Cliente
+struct Cliente
 {
-public:
-    string CPF;
-    string Nome;
-    string Endereco;
-
-    Cliente(string cpf, string nome, string endereco)
-        : CPF(cpf), Nome(nome), Endereco(endereco) {}
+    string nome;
+    string cpf;
+    string Data_N;
+    string cnh;
 };
+
+struct Veiculo
+{
+    string modelo;
+    string placa;
+    string renavan;
+    string localizacao;
+    string dataRetirada;
+    string dataEntrega;
+    string lojaRetirada;
+};
+
+void incluirCliente(vector<Cliente> &clientes)
+{
+    Cliente cliente;
+    cout << "Digite o nome do cliente: ";
+    cin.ignore();
+    getline(cin, cliente.nome);
+    cout << "Digite o CPF do cliente: ";
+    cin >> cliente.cpf;
+    cout << "Digite a Data de Nascimento do cliente: ";
+    cin.ignore();
+    getline(cin, cliente.Data_N);
+    cout << "Digite a CNH do Cliente:";
+    cin >> cliente.cnh;
+    clientes.push_back(cliente);
+    cout << "Cliente incluido com sucesso." << endl;
+}
+
+void excluirCliente(vector<Cliente> &clientes)
+{
+    string cpf;
+    cout << "Digite o CPF do cliente a ser excluido: ";
+    cin >> cpf;
+    for (size_t i = 0; i < clientes.size(); i++)
+    {
+        if (clientes[i].cpf == cpf)
+        {
+            clientes.erase(clientes.begin() + i);
+            cout << "Cliente excluido com sucesso." << endl;
+            return;
+        }
+    }
+    cout << "Cliente nao encontrado." << endl;
+}
+
+void listarClientes(const vector<Cliente> &clientes)
+{
+    cout << "Lista de Clientes:" << endl;
+    for (const Cliente &cliente : clientes)
+    {
+        cout << "Nome: " << cliente.nome << endl;
+        cout << "CPF: " << cliente.cpf << endl;
+        cout << "Data de Nascimento: " << cliente.Data_N << endl;
+        cout << "-------------------" << endl;
+    }
+}
+
+void incluirVeiculo(vector<Veiculo> &veiculos)
+{
+    Veiculo veiculo;
+    cout << "Digite o modelo do veiculo: ";
+    cin.ignore();
+    getline(cin, veiculo.modelo);
+    cout << "Digite a placa do veiculo: ";
+    cin >> veiculo.placa;
+    cout << "Digite o Renavan do veiculo: ";
+    cin.ignore();
+    getline(cin, veiculo.renavan);
+    cout << "Digite a localizacao do veiculo: ";
+    getline(cin, veiculo.localizacao);
+    cout << "Digite a data de retirada do veiculo (dd/mm/aaaa): ";
+    getline(cin, veiculo.dataRetirada);
+    cout << "Digite a data de entrega prevista do veiculo (dd/mm/aaaa): ";
+    getline(cin, veiculo.dataEntrega);
+    cout << "Digite a loja de retirada do veiculo: ";
+    getline(cin, veiculo.lojaRetirada);
+    veiculos.push_back(veiculo);
+    cout << "Veiculo incluido com sucesso." << endl;
+}
+
+
+void excluirVeiculo(vector<Veiculo> &veiculos)
+{
+    string placa;
+    cout << "Digite a placa do veiculo a ser excluido: ";
+    cin >> placa;
+    for (size_t i = 0; i < veiculos.size(); i++)
+    {
+        if (veiculos[i].placa == placa)
+        {
+            veiculos.erase(veiculos.begin() + i);
+            cout << "Veiculo excluido com sucesso." << endl;
+            return;
+        }
+    }
+    cout << "Veiculo nao encontrado." << endl;
+}
+
+
+void listarVeiculos(const vector<Veiculo> &veiculos)
+{
+    cout << "Lista de Veiculos:" << endl;
+    for (const Veiculo &veiculo : veiculos)
+    {
+        cout << "Modelo: " << veiculo.modelo << endl;
+        cout << "Placa: " << veiculo.placa << endl;
+        cout << "Renavan: " << veiculo.renavan << endl;
+        cout << "Localizacao: " << veiculo.localizacao << endl;
+        cout << "Data de Retirada: " << veiculo.dataRetirada << endl;
+        cout << "Data de Entrega Prevista: " << veiculo.dataEntrega << endl;
+        cout << "Loja de Retirada: " << veiculo.lojaRetirada << endl;
+        cout << "-------------------" << endl;
+    }
+}
 
 int main()
 {
     vector<Cliente> clientes;
+    vector<Veiculo> veiculos;
 
-    while (true)
+    int opcao;
+
+    do
     {
-        cout << "Menu de Opções:" << endl;
-        cout << "1. Incluir" << endl;
-        cout << "2. Excluir" << endl;
-        cout << "3. Alterar" << endl;
-        cout << "4. Listar" << endl;
-        cout << "5. Localizar" << endl;
+        cout << "Menu:" << endl;
+        cout << "1. Incluir Cliente" << endl;
+        cout << "2. Excluir Cliente" << endl;
+        cout << "3. Listar Clientes" << endl;
+        cout << "4. Incluir Veiculo" << endl;
+        cout << "5. Excluir Veiculo" << endl;
+        cout << "6. Listar Veiculos" << endl;
         cout << "0. Sair" << endl;
+        cout << "Escolha uma opcao: ";
+        cin >> opcao;
 
-        int escolha;
-        cin >> escolha;
-
-        switch (escolha)
+        switch (opcao)
         {
         case 1:
-        {
-            string cpf, nome, endereco;
-            cout << "Informe o CPF: ";
-            cin >> cpf;
-            cout << "Informe o Nome: ";
-            cin.ignore();
-            getline(cin, nome);
-            cout << "Informe o Endereço: ";
-            getline(cin, endereco);
-
-            Cliente novoCliente(cpf, nome, endereco);
-            clientes.push_back(novoCliente);
-            cout << "Cliente incluído com sucesso!" << endl;
-        }
-        break;
-
+            incluirCliente(clientes);
+            break;
         case 2:
-        {
-            string cpf;
-            cout << "Informe o CPF do cliente a ser excluído: ";
-            cin >> cpf;
-
-            for (auto it = clientes.begin(); it != clientes.end(); ++it)
-            {
-                if (it->CPF == cpf)
-                {
-                    clientes.erase(it);
-                    cout << "Cliente excluído com sucesso!" << endl;
-                    break;
-                }
-            }
-        }
-        break;
-
+            excluirCliente(clientes);
+            break;
         case 3:
-        {
-            string cpf;
-            cout << "Informe o CPF do cliente a ser alterado: ";
-            cin >> cpf;
-
-            for (auto &cliente : clientes)
-            {
-                if (cliente.CPF == cpf)
-                {
-                    cout << "Dados atuais do cliente:" << endl;
-                    cout << "CPF: " << cliente.CPF << endl;
-                    cout << "Nome: " << cliente.Nome << endl;
-                    cout << "Endereço: " << cliente.Endereco << endl;
-
-                    int opcao;
-                    cout << "Deseja alterar o Nome? (1 para Sim, 0 para Não): ";
-                    cin >> opcao;
-                    if (opcao == 1)
-                    {
-                        cout << "Novo Nome: ";
-                        cin.ignore();
-                        getline(cin, cliente.Nome);
-                    }
-
-                    cout << "Deseja alterar o Endereço? (1 para Sim, 0 para Não): ";
-                    cin >> opcao;
-                    if (opcao == 1)
-                    {
-                        cout << "Novo Endereço: ";
-                        cin.ignore();
-                        getline(cin, cliente.Endereco);
-                    }
-
-                    cout << "Cliente alterado com sucesso!" << endl;
-                    break;
-                }
-            }
-        }
-        break;
-
+            listarClientes(clientes);
+            break;
         case 4:
-            if (clientes.empty())
-            {
-                cout << "Nenhum cliente cadastrado." << endl;
-            }
-            else
-            {
-                cout << "Lista de Clientes:" << endl;
-                for (const auto &cliente : clientes)
-                {
-                    cout << "CPF: " << cliente.CPF << endl;
-                    cout << "Nome: " << cliente.Nome << endl;
-                    cout << "Endereço: " << cliente.Endereco << endl;
-                    cout << "-----------------------" << endl;
-                }
-            }
+            incluirVeiculo(veiculos);
             break;
-
         case 5:
-        {
-            string cpf;
-            cout << "Informe o CPF do cliente a ser localizado: ";
-            cin >> cpf;
-
-            for (const auto &cliente : clientes)
-            {
-                if (cliente.CPF == cpf)
-                {
-                    cout << "CPF: " << cliente.CPF << endl;
-                    cout << "Nome: " << cliente.Nome << endl;
-                    cout << "Endereço: " << cliente.Endereco << endl;
-                    break;
-                }
-            }
-        }
-        break;
-
+            excluirVeiculo(veiculos);
+            break;
+        case 6:
+            listarVeiculos(veiculos);
+            break;
         case 0:
-            cout << "Encerrando o programa." << endl;
-            return 0;
-
+            cout << "Saindo do programa." << endl;
+            break;
         default:
-            cout << "Opção inválida. Tente novamente." << endl;
+            cout << "Opcao invalida. Tente novamente." << endl;
             break;
         }
-    }
+    } while (opcao != 0);
 
     return 0;
 }
